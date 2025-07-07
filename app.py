@@ -26,7 +26,7 @@ cidade_base = "Curitiba, PR, Brasil"
 enderecos = df['LOGRADOURO_NOME_CURITIBA'].astype(str) + ", " + cidade_base
 
 # Geocodificador com controle de taxa
-geolocator = Nominatim(user_agent="app_geo_ocorrencias")
+geolocator = Nominatim(user_agent="/app.py")
 geocode = RateLimiter(geolocator.geocode, min_delay_seconds=1)
 
 st.info("Geocodificando os endereços... pode demorar dependendo da quantidade de registros.")
@@ -40,16 +40,19 @@ df['lon'] = df['location'].apply(lambda loc: loc.longitude if loc else None)
 # Filtra apenas os geocodificados com sucesso
 df_marcados = df.dropna(subset=['lat', 'lon'])
 
-# Cria o mapa com folium
+
+# Cria o mapa
 mapa = folium.Map(location=[-25.43, -49.27], zoom_start=12, tiles='CartoDB positron')
 
+# Adiciona marcadores no mapa
 for _, row in df_marcados.iterrows():
-    folium.Marker(
-        location=[row['lat'], row['lon']],
-        popup=f"{row['LOGRADOURO']}",
-        icon=folium.Icon(color='red', icon='info-sign')
+    folium.CircleMarker(
+        location=[row["lat"], row["lon"]],
+        radius=4,
+        color="blue",
+        fill=True,
+        fill_opacity=0.6,
+        popup=row["LOGRADOURO"]
     ).add_to(mapa)
 
-st.success(f"{len(df_marcados)} endereços geocodificados com sucesso.")
-folium_static(mapa)
 
