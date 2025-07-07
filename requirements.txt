@@ -6,3 +6,4 @@ pandas
 plotly.express
 numpy
 pydeck
+geopy.geocoders
