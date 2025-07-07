@@ -1,8 +1,6 @@
 import streamlit as st
-from streamlit_folium import folium_static
 import folium
-
-import streamlit as st
+from streamlit_folium import folium_static
 import pydeck as pdk
 
 st.set_page_config(page_title="UK Car Accidents - Pydeck", layout="wide")
