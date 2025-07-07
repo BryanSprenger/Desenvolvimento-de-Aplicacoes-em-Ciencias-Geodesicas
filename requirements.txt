@@ -5,3 +5,4 @@ geopandas
 pandas
 plotly.express
 numpy
+pydeck
