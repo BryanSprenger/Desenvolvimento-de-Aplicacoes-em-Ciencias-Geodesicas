@@ -14,7 +14,7 @@ st.markdown("Geocodificação de endereços a partir da base de dados pública."
 url = 'https://raw.githubusercontent.com/BryanSprenger/Desenvolvimento-de-Aplicacoes-em-Ciencias-Geodesicas/refs/heads/main/Dados%20ocorrencias.csv'
 
 # Carrega os dados
-df = pd.read_csv(url, sep=';', encoding='utf-8')
+df = pd.read_csv(url, sep=',', encoding='utf-8')
 st.write("Visualização da base de dados original:")
 st.dataframe(df.head())
 st.write(df.columns.tolist())
