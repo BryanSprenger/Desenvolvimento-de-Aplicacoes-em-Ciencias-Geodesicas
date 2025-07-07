@@ -17,6 +17,8 @@ url = 'https://raw.githubusercontent.com/BryanSprenger/Desenvolvimento-de-Aplica
 df = pd.read_csv(url, sep=';', encoding='utf-8')
 st.write("Visualização da base de dados original:")
 st.dataframe(df.head())
+st.write(df.columns.tolist())
+
 
 # Seleciona apenas os dados com logradouro válido
 df = df[df['LOGRADOURO_NOME_CURITIBA'].notnull() & (df['LOGRADOURO_NOME_CURITIBA'] != '')]
